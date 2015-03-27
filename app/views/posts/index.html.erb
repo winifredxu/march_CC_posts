@@ -1,0 +1,8 @@
+<h1>Welcome to Yushadha's List</h1>
+
+<%= link_to "New Post", new_post_path %>
+<br>
+<% @posts.each do |p| %>
+  <%= link_to p.title, post_path(p) %>
+  <hr>
+<% end %>
