@@ -8,8 +8,20 @@ Rails.application.routes.draw do
   # patch "/posts/:id"    => "posts#update"
   # delete "/posts/:id"   => "posts#destroy"
   resources :posts do
-    resources :discussions
+    resources :discussions, only: [:show, :create, :destroy] do
+      # This will work but highly discouraged because the 
+      # results URLS will be long and cumbersome to generate
+      # resources :comments
+    end
   end
+
+  # we user only: [] because we don't care about the top level non-nested
+  # discussions resources. We only really need to use the discussions 
+  # resources nested under posts resources above
+  resources :discussions, only: [] do
+    resources :comments, only: [:create, :destroy]
+  end
+
 
   root "posts#index"
 

@@ -1,6 +1,7 @@
 class DiscussionsController < ApplicationController
   before_action :find_post
 
+  # POST /posts/5/discussions
   def create
     @discussion      = Discussion.new discussion_params
     # @discussion.post_id = @post.id
@@ -12,10 +13,17 @@ class DiscussionsController < ApplicationController
     end
   end
 
+  # DELETE /posts/5/discussions/10
   def destroy
     @discussion = Discussion.find params[:id]
     @discussion.destroy
     redirect_to post_path(@post)
+  end
+
+  # GET /posts/5/discussions/10
+  def show
+    @discussion = Discussion.find params[:id]
+    @comment    = Comment.new
   end
 
   private
