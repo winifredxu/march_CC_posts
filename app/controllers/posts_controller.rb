@@ -24,6 +24,7 @@ class PostsController < ApplicationController
 
   # GET /posts/3
   def show
+    @discussion = Discussion.new
   end
 
   # get /posts/4/edit

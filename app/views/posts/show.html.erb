@@ -4,3 +4,20 @@
 <p><%= @post.location %></p>
 <%= link_to "Edit", edit_post_path(@post) %>
 <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+
+<hr>
+
+<h2>Discussions</h2>
+
+<%= form_for @discussion, url: post_discussions_path(@post) do |f| %>
+  <%= f.text_field :title, placeholder: "Discussion title." %>
+  <br>
+  <%= f.text_area :body, placeholder: "Discussion body." %>
+  <br>
+  <%= f.submit %>
+<% end %>
+
+<% @post.discussions.each do |post| %>
+  <p><%= post.title %></p>
+  <hr>
+<% end %>
