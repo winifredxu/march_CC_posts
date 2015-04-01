@@ -9,6 +9,14 @@
 
 <h2>Discussions</h2>
 
+<% if @discussion.errors.any? %>
+  <ul>
+    <% @discussion.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_for @discussion, url: post_discussions_path(@post) do |f| %>
   <%= f.text_field :title, placeholder: "Discussion title." %>
   <br>
@@ -17,7 +25,8 @@
   <%= f.submit %>
 <% end %>
 
-<% @post.discussions.each do |post| %>
-  <p><%= post.title %></p>
+<% @post.discussions.each do |discussion| %>
+  <p><%= discussion.title %></p>
+  <p><%= button_to "Delete", post_discussion_path(@post, discussion), method: :delete, data: {confirm: "Are you sure?"} %></p>
   <hr>
 <% end %>
