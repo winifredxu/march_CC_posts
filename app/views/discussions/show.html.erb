@@ -2,7 +2,7 @@
 <p><%= @discussion.body %></p>
 
 
-<% form_for @comment, url: discussion_comments_path(@discussion) do |f| %>
+<%= form_for @comment, url: discussion_comments_path(@discussion) do |f| %>
   <%= f.text_area :body, placeholder: "Put your comment here" %>
   <br>
   <%= f.submit %>
