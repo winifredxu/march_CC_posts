@@ -25,8 +25,12 @@
   <%= f.submit %>
 <% end %>
 
+
 <% @post.discussions.each do |discussion| %>
   <p><%= link_to discussion.title, post_discussion_path(@post, discussion) %></p>
-  <p><%= button_to "Delete", post_discussion_path(@post, discussion), method: :delete, data: {confirm: "Are you sure?"} %></p>
+
+  <!-- button_to default to "post", link_to defaults to "get" -->
+  <p><%= button_to "Delete", post_discussions_path(@post, discussion), method: :delete, data: {confirm: "Are you sure?"} %></p>
+
   <hr>
 <% end %>
